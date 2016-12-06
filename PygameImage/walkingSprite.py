@@ -39,6 +39,11 @@ teleport2 = pygame.image.load('teleport2.png')
 teleport3 = pygame.image.load('teleport3.png')
 white = pygame.Color('#FFFFFF')
 
+#-------------------
+pygame.mixer.music.load("music.mp3")
+pygame.mixer.music.play(-1)
+teleportSound = pygame.mixer.Sound('teleport.wav')
+
 x = 0
 y = 0
 locked = False
@@ -66,7 +71,9 @@ while not done:
             image = standing
             count = 0
     else:
-        if count < 5:
+        if count == 0:
+            teleportSound.play()
+        elif count < 5:
             image = teleport1
         elif count < 10:
             image = teleport2
